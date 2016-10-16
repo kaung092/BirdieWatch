@@ -12,9 +12,9 @@ angular.module('app.services', [])
 			if(!chosenSpecies.includes(newItem)){
 				newItem.count = 0;
 				chosenSpecies.push(newItem);
-				return chosenSpecies;
+				return true;
 			}
-
+			return false;
 
 		},
 		getSpecies: function(){

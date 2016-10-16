@@ -1,35 +1,34 @@
 <ion-view title="Tally Sheet" id="tallySheet">
     <ion-content padding="true" class="has-header">
+
         <button id="home-button17" style="font-size:18px;border-radius:5px 5px 5px 5px;" class="button button-balanced  button-block icon-left ion-android-add" ui-sref="menu.addSpecies" >Add New Speices</button>
         <ion-list id="home-list3">
 
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="" ng-model="searchText">
+                <input type="search" placeholder="Seach by Speices or Name" ng-model="searchText">
             </label>
 
-            <ion-list show-delete="shouldShowDelete">
-                <ion-item ng-repeat="item in chosenSpecies | filter:searchText" id={{item}} class="item-avatar">
-                    <ion-delete-button class="ion-minus-circled"
+            <ion-list show-delete="shouldShowDelete" >
+                <ion-item ng-repeat="item in chosenSpecies | filter:searchText" id={{item}} style="padding:0px;height:120px;">
+                    <div class="row" style="padding:0px">
+                        <ion-delete-button class="ion-minus-circled"
                            ng-click="items.splice($index, 1)">
-                    </ion-delete-button>
-                    <div class="row">
-                        <div class="col-15">
-                            <img src={{item.src}} style="border-radius:500px;width:200px;height:200px"/>                   
+                        </ion-delete-button>
+                        <div class="col">
+                            <img src={{item.src}} style="border-radius:500px;width:80px;height:80px"/>                   
                         </div>
-                        <div class="col-5">
-                            <h1 style="margin-top:150px">x{{item.count}}</h1> 
+                        <div class="col">
+                            <h1 style="margin-top:40px">x{{item.count}}</h1> 
                         </div>
-                        <div class="col-40" >
-                            <h2>Species:  &#9 {{item.species}} </h2>
-                            <h2>Name:  {{item.name}}</h2>
-                        </div>
-                        <div class="col-40" align ='right'>
-                            <div id="home-button-bar2" class="button-bar" style="width:80%;margin-top:80px;">
-                                <button ng-click = "item.count = item.count+1" class="button button-balanced  button-block increment ion-plus"></button>
-                                <button ng-click = "item.count = item.count>0?item.count-1:0" class="button button-assertive  button-block decrement ion-minus-circled"></button>
-                                <button ng-click = "item.count = 0" class="button button-energized  button-block reset "><h3>reset<h3>
-                                </button>
+                        <div class="col" align="center">
+                            <div class="row-60 item-text-wrap">
+                                <h4>{{item.species}} </h4>
+                            </div>
+                            <div id="home-button-bar2" class="button-bar row-40" style="height:30%;width:100%;">
+                                <button ng-click = "item.count = item.count+1" class="col-20 button button-balanced  button-block increment ion-plus"></button>
+                                <button ng-click = "item.count = item.count>0?item.count-1:0" class="col-20 button button-assertive  button-block decrement ion-minus-circled"></button>
+
                             </div>
                         </div>                                                
                     </div>

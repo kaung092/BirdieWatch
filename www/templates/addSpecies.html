@@ -9,12 +9,24 @@
             <label>Data obtained from : http://www.oceanlight.com/birds.html</label>
             <br><br>
             <ion-list>
-                <ion-item class="item-thumbnail-left" ng-repeat="item in species | filter:searchText" layout="center end" style="height:50px">
-                    <img src={{item.src}} style="border-radius:500px">
-                    <h2>Species: {{item.species}}</h2>
-                    <h2>Name: {{item.name==''?'NA':item.name}}</h2>
-                    
-                    <button class="button button-positive btn-sm" ui-sref="menu.tallySheet({params:item})">Add</button>
+                <ion-item class="item-thumbnail-left" ng-repeat="item in species | filter:searchText" layout="center end" style="height:120px;padding:0px;">
+                    <div class="row">
+                        <div class="col-25">
+                            <img src={{item.src}} style="border-radius:500px;width:80px;height:80px">
+                        </div>
+                        <div class="col-75 item-text-wrap" align="center">
+                            <div class="row-60">
+                                <h4>{{item.species}} </h4>
+                                <h6>{{item.name==''||item.name.length>100?'':'('+item.name+')'}} </h6>
+                            </div>
+                            <div class="row-40">
+                                <div class="col">
+                                    <button class="button button-block button-positive" ui-sref="menu.tallySheet({params:item})">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                     
+                    </div>
                 </ion-item>
             </ion-list>
         </form>
