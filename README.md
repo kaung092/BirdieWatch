@@ -7,10 +7,19 @@ Install Ionic
 ---------------------
 First, install Node.js. Then, install the latest Cordova and Ionic command-line tools. Follow the Android and iOS platform guides to install required platform dependencies.
 
-        npm install -g cordova ionic
- 
-Running the project on browser 
----------------------
-Clone the project and in project's root directory, run:
+        $npm install -g cordova ionic
+        
+Clone the project and do:
 
-        ionic serve
+        $cd BirdieWatch
+        $ionic platform add ios
+ 
+Running the project 
+---------------------
+To run it on browser, in project's root directory:
+
+        $ionic serve
+
+To run it on emulator:
+        
+        $ionic emulate ios
