@@ -1,20 +1,26 @@
+
 <ion-view title="Tally Sheet" id="tallySheet">
-    <ion-content padding="true" class="has-header">
+ <ion-nav-bar class= "bar-stable">
+  <ion-nav-back-button class="button-clear"
+    ng-click="quitReport()">
+    Reports
+  </ion-nav-back-button>
+</ion-nav-bar>
 
+    <label class="item item-input has-header bar-subheader">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="Seach by Speices" ng-model="searchText">
+    </label>
+    <ion-content padding="true" class="has-subheader" >
+        
         <button id="home-button17" style="font-size:18px;border-radius:5px 5px 5px 5px;" class="button button-balanced  button-block icon-left ion-android-add" ui-sref="menu.addSpecies" >Add New Speices</button>
+        {{chosenSpecies.length==0?instruction:''}}
         <ion-list id="home-list3">
-
-            <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Seach by Speices or Name" ng-model="searchText">
-            </label>
-
-            <ion-list show-delete="shouldShowDelete" >
+            <ion-list show-delete="showDelete" >
                 <ion-item ng-repeat="item in chosenSpecies | filter:searchText" id={{item}} style="padding:0px;height:120px;">
+                    <ion-delete-button class="ion-minus-circled" ng-click="removeChosenSpecies($index)">
+                    </ion-delete-button>
                     <div class="row" style="padding:0px">
-                        <ion-delete-button class="ion-minus-circled"
-                           ng-click="items.splice($index, 1)">
-                        </ion-delete-button>
                         <div class="col">
                             <img src={{item.src}} style="border-radius:500px;width:80px;height:80px"/>                   
                         </div>
@@ -26,8 +32,9 @@
                                 <h4>{{item.species}} </h4>
                             </div>
                             <div id="home-button-bar2" class="button-bar row-40" style="height:30%;width:100%;">
-                                <button ng-click = "item.count = item.count+1" class="col-20 button button-balanced  button-block increment ion-plus"></button>
-                                <button ng-click = "item.count = item.count>0?item.count-1:0" class="col-20 button button-assertive  button-block decrement ion-minus-circled"></button>
+                                <button ng-click = "decrement(item)" class="col-20 button button-assertive  button-block decrement ion-minus-circled"></button>
+                                <span class="col-10"></span>
+                                <button ng-click = "increment(item)" class="col-20 button button-balanced  button-block increment ion-plus"></button>
 
                             </div>
                         </div>                                                
@@ -36,6 +43,16 @@
             </ion-list>
         </ion-list>
 
-       
+      
     </ion-content>
+
+    <ion-footer-bar align-title="left" class="bar-success">
+      <div class="buttons">
+        <button class="ion-minus-circled" ng-click="showDelete=!showDelete"></button>
+      </div>
+      <label class="title blue">Total Count: {{ totalCount }}</label>
+      <div class="buttons" ng-click="submit()">
+        <button class="button button-positive">Submit Data</button>
+      </div>
+    </ion-footer-bar>
 </ion-view>
