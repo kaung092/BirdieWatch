@@ -1,6 +1,6 @@
 {
-  "name": "birdCounter",
-  "short_name": "birdCounter",
+  "name": "BirdieWatch",
+  "short_name": "BirdieWatch",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

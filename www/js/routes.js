@@ -9,7 +9,8 @@ angular.module('app.routes', [])
   $stateProvider
 
 
-    .state('menu.tallySheet', {
+  .state('menu.tallySheet', {
+    cache:false,
     url: '/tallySheet',
     views: {
       'side-menu21': {
@@ -20,8 +21,35 @@ angular.module('app.routes', [])
     params:{
       params:null
     }
-
   })
+
+  .state('menu.reportPage', {
+    cache:false,
+    url: '/reportPage',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/myReports.html',
+        controller: 'reportCtrl'
+      }
+    },
+    params:{
+      params:null
+    }
+  })
+
+  .state('menu.loginPage', {
+    url: '/loginPage',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
+      }
+    },
+    params:{
+      params:null
+    }
+
+  })  
 
   .state('menu.addSpecies', {
     url: '/page2',
@@ -33,15 +61,6 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu.cloud', {
-    url: '/page3',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/cloud.html',
-        controller: 'cloudCtrl'
-      }
-    }
-  })
 
   .state('menu', {
     url: '/side-menu21',
@@ -49,7 +68,7 @@ angular.module('app.routes', [])
     controller: 'menuCtrl'
   })
 
-$urlRouterProvider.otherwise('/side-menu21/tallySheet')
+$urlRouterProvider.otherwise('/side-menu21/loginPage')
 
   
 
