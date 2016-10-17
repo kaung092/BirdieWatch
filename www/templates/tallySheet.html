@@ -1,28 +1,26 @@
 
 <ion-view title="Tally Sheet" id="tallySheet">
- <ion-nav-bar class= "bar-stable">
-  <ion-nav-back-button class="button-clear"
-    ng-click="quitReport()">
-    Reports
-  </ion-nav-back-button>
-</ion-nav-bar>
 
-    <label class="item item-input has-header bar-subheader">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="search" placeholder="Seach by Speices" ng-model="searchText">
-    </label>
-    <ion-content padding="true" class="has-subheader" >
+<ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+</ion-nav-buttons>
+<label class="item item-input has-header bar-subheader">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="search" placeholder="Seach by Speices" ng-model="searchText">
+</label>
+
+<ion-content padding="true" class="has-subheader" >
         
-        <button id="home-button17" style="font-size:18px;border-radius:5px 5px 5px 5px;" class="button button-balanced  button-block icon-left ion-android-add" ui-sref="menu.addSpecies" >Add New Speices</button>
+        <button id="addSpecies" class="button button-balanced  button-block icon-left ion-android-add" ui-sref="menu.addSpecies">Add New Speices</button>
         {{chosenSpecies.length==0?instruction:''}}
-        <ion-list id="home-list3">
+        <ion-list id="tallyList">
             <ion-list show-delete="showDelete" >
-                <ion-item ng-repeat="item in chosenSpecies | filter:searchText" id={{item}} style="padding:0px;height:120px;">
+                <ion-item id={{item}} ng-repeat="item in chosenSpecies | filter:searchText" >
                     <ion-delete-button class="ion-minus-circled" ng-click="removeChosenSpecies($index)">
                     </ion-delete-button>
-                    <div class="row" style="padding:0px">
+                    <div class="row" >
                         <div class="col">
-                            <img src={{item.src}} style="border-radius:500px;width:80px;height:80px"/>                   
+                            <img src={{item.src}} class="tallyImage"/>                   
                         </div>
                         <div class="col">
                             <h1 style="margin-top:40px">x{{item.count}}</h1> 
@@ -31,11 +29,10 @@
                             <div class="row-60 item-text-wrap">
                                 <h4>{{item.species}} </h4>
                             </div>
-                            <div id="home-button-bar2" class="button-bar row-40" style="height:30%;width:100%;">
+                            <div id="counterButton" class="button-bar row-40">
                                 <button ng-click = "decrement(item)" class="col-20 button button-assertive  button-block decrement ion-minus-circled"></button>
                                 <span class="col-10"></span>
                                 <button ng-click = "increment(item)" class="col-20 button button-balanced  button-block increment ion-plus"></button>
-
                             </div>
                         </div>                                                
                     </div>

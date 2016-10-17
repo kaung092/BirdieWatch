@@ -4,7 +4,6 @@ angular.module('app.controllers', [])
 
 	$scope.showDelete = false;
 	$scope.startTime = utilService.getTime();
-	$scope.totalCount = utilService.getTotalCount();
 	$scope.instruction = "Your list is empty. Start adding birds to count now!";
 	$scope.chosenSpecies = [];
 
@@ -17,10 +16,15 @@ angular.module('app.controllers', [])
 	}
 	else{
 		$scope.chosenSpecies = [];
+		APIService.setTotalCount(0);
+		APIService.emptyChosenSpecies();
 	}
+	$scope.totalCount = APIService.getTotalCount();
+
+
 	$scope.removeChosenSpecies = function(index){
 		$scope.totalCount -= $scope.chosenSpecies[index].count;
-		utilService.setTotalCount($scope.totalCount);
+		APIService.setTotalCount($scope.totalCount);
 		$scope.chosenSpecies.splice(index, 1);
 	}
 
@@ -28,14 +32,15 @@ angular.module('app.controllers', [])
 		var endTime = utilService.getTime();
 		APIService.confirm($state,$ionicPopup,$scope.startTime,endTime,$scope.totalCount);
 	};
+	/*
 	$scope.quitReport = function() {
 		APIService.quitReport($ionicPopup,$state);
-	};
+	};*/
 	$scope.increment = function(item){
-			item.count++; utilService.setTotalCount(++$scope.totalCount);
+			item.count++; APIService.setTotalCount(++$scope.totalCount);
 	}
 	$scope.decrement = function(item){
-			if(item.count>0){ item.count--; utilService.setTotalCount(--$scope.totalCount); }
+			if(item.count>0){ item.count--; APIService.setTotalCount(--$scope.totalCount); }
 	}
 })
 
@@ -54,7 +59,7 @@ angular.module('app.controllers', [])
 	
 	if($stateParams.params!=null){
 		var params = $stateParams.params;
-		console.log('have params: ' + params);
+
 		reportService.addReport(params);
 	}
 
@@ -65,19 +70,11 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
+.controller('menuCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
 
 }])
 
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
+.controller('loginCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
 
 }])
  

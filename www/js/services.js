@@ -3,8 +3,14 @@ angular.module('app.services', [])
 .factory('APIService', function($http){
 	var species = [];
 	var chosenSpecies = [];
-
+	var totalCount=0;
 	return{
+		getTotalCount: function(){
+			return totalCount;
+		},
+		setTotalCount: function(num){
+			totalCount = num;
+		},
 		getChosenSpecies: function(){
 			return chosenSpecies;
 		},
@@ -17,6 +23,9 @@ angular.module('app.services', [])
 			}
 			return false;
 
+		},
+		emptyChosenSpecies: function(){
+			chosenSpecies = [];
 		},
 		getSpecies: function(){
 			return $http.get("http://www.kaunghtet.net/species.php").then(function(response){
@@ -65,7 +74,7 @@ angular.module('app.services', [])
 })
 
 .service('utilService',[function(){
-	var totalCount=0;
+
 	return{
 		getTime: function(){
 			var date = new Date();
@@ -73,12 +82,6 @@ angular.module('app.services', [])
 			var tmp = date.split(":");
 			date = tmp[0]+":"+tmp[1]+" "+ tmp[2].split(" ")[1];
 			return date;
-		},
-		getTotalCount: function(){
-			return totalCount;
-		},
-		setTotalCount: function(num){
-			totalCount = num;
 		}
 	}
 }])
@@ -92,7 +95,6 @@ angular.module('app.services', [])
 	return{
 		addReport: function(chosenSpecies){
 			reports[dateString].push(chosenSpecies);
-			console.log("here 2:"+reports);
 		},
 		getReports: function(){
 			return reports;

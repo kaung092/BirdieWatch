@@ -1,28 +1,20 @@
-<ion-view title="Add New Species" id="addSpeciesPage">
+<ion-view title="Choose New Species" id="addSpeciesPage">
     <label class="item item-input has-header bar-subheader">
         <i class="icon ion-search placeholder-icon"></i>
         <input type="search" placeholder="Seach by Speices or Name" ng-model="searchText">
     </label>
     <ion-content padding="true" class="has-subheader">
-        <form id="species-form1" class="list">
+        <form id="speciesForm" class="list">
             <ion-list class="has-subheader">
-                <ion-item class="item-thumbnail-left" ng-repeat="item in species | filter:searchText" layout="center end" style="height:120px;padding:0px;">
-                    <div class="row">
-                        <div class="col-25">
-                            <img src={{item.src}} style="border-radius:500px;width:80px;height:80px">
+                <ion-item class="item-thumbnail-left" ng-repeat="item in species | filter:searchText" layout="center end" style="height:100px;padding:0px;">
+                    <div class="row" ng-click="goTally(item)" >
+                        <div class="col-30">
+                            <img src={{item.src}} class="speciesImage">
                         </div>
-                        <div class="col-75 item-text-wrap" align="center">
-                            <div class="row-60">
-                                <h4>{{item.species}} </h4>
-                                <h4>{{item.name==''||item.name.length>100?'':'('+item.name+')'}} </h4>
-                            </div>
-                            <div class="row-40">
-                                <div class="col">
-                                    <button class="button button-block button-positive" ng-click="goTally(item)">Add</button>
-                                </div>
-                            </div>
+                        <div class="col-60 item-text-wrap" align="center" style="padding:10px;">
+                            <h4>{{item.species}} </h4>
+                            <h4 >{{item.name==''||item.name.length>100?'':'('+item.name+')'}} </h4>
                         </div>
-                     
                     </div>
                 </ion-item>
             </ion-list>

@@ -2,22 +2,17 @@
     <ion-side-menu-content>
         <ion-nav-bar class="bar-stable">
             <!--<ion-nav-back-button></ion-nav-back-button>-->
-            <!--
-            <ion-nav-buttons side="left">
-                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-            </ion-nav-buttons>
-            -->
         </ion-nav-bar>
         <ion-nav-view name="side-menu21"></ion-nav-view>
     </ion-side-menu-content>
-    <ion-side-menu  id="side-menu21">
+    <ion-side-menu  id="sideMenu">
         <ion-header-bar class="bar-stable">
             <div class="title">Menu</div>
         </ion-header-bar>
         <ion-content padding="false" class=" has-header ">
-            <ion-list id="menu-list1">
-                <ion-item id="menu-list-item1" ui-sref="menu.tallySheet" menu-close="">Create New Tally Report</ion-item>
-                <ion-item id="menu-list-item1" ui-sref="menu.reportPage" menu-close="">Reports</ion-item>
+            <ion-list id="menuList">
+                <ion-item id="menu-item-tally" ui-sref="menu.tallySheet({params:null})" menu-close="">Create New Tally Report</ion-item>
+                <ion-item id="menu-item-reports" ui-sref="menu.reportPage" menu-close="">Reports</ion-item>
             </ion-list>
         </ion-content>
     </ion-side-menu>

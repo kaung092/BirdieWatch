@@ -1,22 +1,19 @@
+
 <ion-view title="My Reports" id="reportPage" >
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
     <ion-content padding="true" class="has-header">
    
-        <ion-list id="myReports-list5">
+        <ion-list id="reportList">
         	<div ng-repeat="(date,reports) in reports">
 	            <ion-item class="item-divider" id={{date}} >{{date}}</ion-item>
 
-	            <ion-item id="myReports-list-item8" ng-repeat="report in reports">
+	            <ion-item ng-repeat="report in reports">
 	            	<label>{{report.label}} </label>
 	            </ion-item>
             </ion-item>
         </div>
     </ion-content>
 
-    <ion-footer-bar align="center" class="bar-success">
-    	<label class="title"></label>
-      	<div class="buttons">
-        	<button id="myReports-button3" class="button button-positive " ui-sref="menu.tallySheet()">Report New Tally Data</button>
- 
-      	</div>
-    </ion-footer-bar>
 </ion-view>

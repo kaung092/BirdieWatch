@@ -61,15 +61,6 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('menu.cloud', {
-    url: '/page3',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/cloud.html',
-        controller: 'cloudCtrl'
-      }
-    }
-  })
 
   .state('menu', {
     url: '/side-menu21',
