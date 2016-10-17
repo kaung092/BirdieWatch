@@ -2,7 +2,7 @@
 BirdieWatch is an IOS app that allows bird feeders to periodically count different bird species and report the data to research centers for nationwide studies of birds.
 The app is built on ionic framework with AngularJS.
 
-![Alt text](www/img/screenShot1.png?raw=true "Optional Title")
+![Alt text](www/img/screenShot.png?raw=true "Optional Title")
 Install Ionic
 ---------------------
 First, install Node.js. Then, install the latest Cordova and Ionic command-line tools. Follow the Android and iOS platform guides to install required platform dependencies.
