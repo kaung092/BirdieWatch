@@ -70,7 +70,7 @@ angular.module('app.services', [])
 		   	});
 		}
 	
-	}
+	};
 })
 
 .service('utilService',[function(){
@@ -83,13 +83,13 @@ angular.module('app.services', [])
 			date = tmp[0]+":"+tmp[1]+" "+ tmp[2].split(" ")[1];
 			return date;
 		}
-	}
+	};
 }])
 
 .service('reportService',[function(){
 	var reports = {};
 	var dateString = new Date().toDateString();
-	if(reports[dateString] == null){
+	if(reports[dateString] === null){
 		reports[dateString] = [];
 	}
 	return{
@@ -99,5 +99,5 @@ angular.module('app.services', [])
 		getReports: function(){
 			return reports;
 		}
-	}
-}])
+	};
+}]);

@@ -7,9 +7,9 @@ angular.module('app.controllers', [])
 	$scope.instruction = "Your list is empty. Start adding birds to count now!";
 	$scope.chosenSpecies = [];
 
-	if($stateParams.params!=null){
+	if($stateParams.params!==null){
 		var params = $stateParams.params;
-		if(APIService.addChosenSpecies(params)==false){
+		if(APIService.addChosenSpecies(params)===false){
 			APIService.alreadyAdded(params.species,$ionicPopup);
 		}
 		$scope.chosenSpecies = APIService.getChosenSpecies();
@@ -26,7 +26,7 @@ angular.module('app.controllers', [])
 		$scope.totalCount -= $scope.chosenSpecies[index].count;
 		APIService.setTotalCount($scope.totalCount);
 		$scope.chosenSpecies.splice(index, 1);
-	}
+	};
 
 	$scope.submit = function() {
 		var endTime = utilService.getTime();
@@ -38,10 +38,10 @@ angular.module('app.controllers', [])
 	};*/
 	$scope.increment = function(item){
 			item.count++; APIService.setTotalCount(++$scope.totalCount);
-	}
+	};
 	$scope.decrement = function(item){
 			if(item.count>0){ item.count--; APIService.setTotalCount(--$scope.totalCount); }
-	}
+	};
 })
 
 .controller('addSpeciesCtrl', function ($scope,$state, $stateParams, APIService) {
@@ -51,13 +51,13 @@ angular.module('app.controllers', [])
 	});
 	$scope.goTally = function(item){
 		$state.go('menu.tallySheet', {params: item});
-	}
+	};
 
 })
    
 .controller('reportCtrl', function ($scope, $state,$stateParams,reportService) {
 	
-	if($stateParams.params!=null){
+	if($stateParams.params!==null){
 		var params = $stateParams.params;
 
 		reportService.addReport(params);
@@ -66,7 +66,7 @@ angular.module('app.controllers', [])
 	$scope.reports = reportService.getReports();
 	$scope.onSwipeRight = function () {
 	 	$state.go('menu.tallySheet');
-  	}
+  	};
 
 })
    
@@ -76,5 +76,5 @@ angular.module('app.controllers', [])
 
 .controller('loginCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
 
-}])
+}]);
  
