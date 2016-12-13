@@ -1,5 +1,14 @@
 angular.module('app.controllers', [])
   
+.constant('AUTH_EVENTS', {
+  loginSuccess: 'auth-login-success',
+  loginFailed: 'auth-login-failed',
+  logoutSuccess: 'auth-logout-success',
+  sessionTimeout: 'auth-session-timeout',
+  notAuthenticated: 'auth-not-authenticated',
+  notAuthorized: 'auth-not-authorized'
+})
+
 .controller('tallySheetCtrl', function ($scope,$state, $stateParams,$ionicPopup, APIService,utilService) {
 
 	$scope.showDelete = false;
@@ -69,12 +78,61 @@ angular.module('app.controllers', [])
   	};
 
 })
-   
-.controller('menuCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
 
-}])
 
-.controller('loginCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+.controller('createAccountCtrl', function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
+	$scope.userInfo = {
+		firstName : '',
+		lastName : '',
+		username : '' ,
+		password : ''
+	}
+	// $scope.createAccount = function(userInfo){
 
-}]);
+	// 	AuthService.createAccount(userInfo).then(
+	// 		function(){
+
+	// 		},
+	// 		function(){
+
+	// 		}
+	// 	)
+	// }
+
+})
+
+.controller('ApplicationController', function ($scope, AuthService) {
+	$scope.setCurrentUser = null;
+	$scope.isAuthenticated = AuthService.isAuthenticated;
+
+	$scope.setCurrentUser = function(user){
+		$scope.currentUer = user;
+	}
+})
+
+.controller('menuCtrl', function ($scope, AuthService) {
+
+})
+
+.controller('loginCtrl', function ($scope, $state, $rootScope, AUTH_EVENTS, $stateParams,AuthService) {
+	$scope.credentials ={
+		username: '',
+		password: ''
+	};
+	$scope.loginFailed = false;
+
+	$scope.login = function(credentials){
+		AuthService.login(credentials).then(function(user){
+			console.log('login success');
+			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+			$scope.setCurrentUser(user);
+			$scope.loginFailed = false;
+			$state.go('menu.tallySheet');
+		},function(){
+			console.log('login failed');
+			$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+			$scope.loginFailed = true;
+		})
+	};	
+});
  

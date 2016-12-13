@@ -68,6 +68,20 @@ angular.module('app.routes', [])
     controller: 'menuCtrl'
   })
 
+  .state('menu.createAccount', {
+    cache:false,
+    url: '/createAccount',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/createAccount.html',
+        controller: 'reportCtrl'
+      }
+    },
+    params:{
+      params:null
+    }
+  })
+
 $urlRouterProvider.otherwise('/side-menu21/loginPage')
 
   

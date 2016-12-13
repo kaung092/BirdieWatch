@@ -1,0 +1,28 @@
+<ion-view title="" id="createAccountPage">
+    <ion-content padding="true" class="has-header">
+        <br><br><br><br>
+        <h1 style="color:#37B8B5;text-align:center;">Create New Account</h1>
+        <br>
+        <form id="loginForm" class="list">
+            <label class="item item-input">
+                <span class="input-label" required>Name</span>
+                <input type="text" ng-model="userInfo.firstName">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="email" ng-model="userInfo.lastName">
+            </label>
+            <br>
+            <label class="item item-input" id="page-input4">
+                <span class="input-label" required>Username</span>
+                <input type="text" ng-model="userInfo.username">
+            </label>
+            <label class="item item-input">
+                <span class="input-label" required>Password</span>
+                <input type="text" ng-model="userInfo.password">
+            </label>
+        </form>
+        <button class="button button-positive  button-block" ui-sref="menu.loginPage()" type="submit">Submit</button>
+        
+    </ion-content>
+</ion-view>

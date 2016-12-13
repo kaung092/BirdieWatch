@@ -28,7 +28,7 @@ angular.module('app.services', [])
 			chosenSpecies = [];
 		},
 		getSpecies: function(){
-			return $http.get("http://www.kaunghtet.net/species.php").then(function(response){
+			return $http.get("http://52.70.188.192/BirdieWatch/species.php").then(function(response){
 				species = response;
 				return species;
 			});
@@ -86,12 +86,47 @@ angular.module('app.services', [])
 	};
 }])
 
+.service('AuthService',function($http,Session){
+	return{
+		login : function(credentials){
+			return $http({
+					withCredentials: false,
+					url:'http://52.70.188.192/BirdieWatch/login.php',
+					method:'POST',
+					data: {'message':credentials},
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				})
+				.then(function(res){
+					Session.create(res.data.id, res.data.user.id);
+					return res.data.user;
+				});
+		},
+		isAuthenticated : function(){
+			return !!Session.userId;
+		},
+		createAccount: function(userInfo){
+			 return true;
+		}
+	};
+})
+
+//Singleton Session Object
+.service('Session',function(){
+	this.create = function(sessionId, userId){
+		this.id = sessionId;
+		this.userId = userId;
+	};
+	this.destroy = function(){
+		this.id = null;
+		this.userId = null;
+	}
+})
+
 .service('reportService',[function(){
 	var reports = {};
 	var dateString = new Date().toDateString();
-	if(reports[dateString] === null){
-		reports[dateString] = [];
-	}
+	reports[dateString] = [];
+
 	return{
 		addReport: function(chosenSpecies){
 			reports[dateString].push(chosenSpecies);
